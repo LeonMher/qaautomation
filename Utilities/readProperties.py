@@ -10,6 +10,10 @@ class ReadProperties:
         return url
 
     @staticmethod
+    def getApplicationRegisterUrl():
+        url = config.get('common info', 'registerUrl')
+        return url
+    @staticmethod
     def getUserEmail():
         email = config.get('common info', 'userEmail')
         return email

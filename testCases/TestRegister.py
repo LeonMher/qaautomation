@@ -1,18 +1,22 @@
 import pytest
 from selenium import webdriver
-from pageObjects.Login import Login
+from pageObjects.Register import Register
 from Utilities.readProperties import ReadProperties
 # from utilities.customLogger import LogGen
 from Utilities.customLogger import MyLogger
 
 
-class Test_Login_Logout:
-    baseUrl = ReadProperties.getApplicationUrl()
-    userEmail = "99.p3rc3n7@gmail.com"
+class Test_Register:
+    baseUrl = ReadProperties.getApplicationRegisterUrl()
+    userFirstName = "Mher"
+    userLastName = "Tsatinyan"
+    userEmail = "mtsatinyan2@gmail.com"
+
+
     userPassword = "kepler22bb"
 
     logger = MyLogger()
-    logger.info("*************** Login and Logout   *****************")
+    logger.info("*************** Register   *****************")
 
     def testTitle(self):
 
@@ -21,33 +25,37 @@ class Test_Login_Logout:
         actualTitle = self.driver.title
         # Why do we close the webdriver, what if we don't actually close it
 
-        if(actualTitle == "nopCommerce demo store. Login"):
-            # whats assert for in python?
-            self.driver.save_screenshot(".//screenshots//" + "TestCase_01.png")
+        if (actualTitle == "nopCommerce demo store. Register"):
+
             assert True
             self.driver.close()
         else:
             assert False
             self.driver.close()
-
 
     def test_login(self):
         self.driver = webdriver.Chrome()
         self.driver.get(self.baseUrl)
-        self.lp = Login(self.driver)
-        self.lp.setUserName(self.userEmail)
-        self.lp.setUserPassword(self.userPassword)
-        self.lp.clickOnLogin()
-        self.lp.clickOnLogout()
         actualTitle = self.driver.title
 
-        self.driver.close()
 
+        self.lp = Register(self.driver)
 
+        self.lp.setFirstName(self.userFirstName)
+        self.lp.setLastName(self.userLastName)
+        self.lp.setEmail(self.userEmail)
+        self.lp.setPassword(self.userPassword)
+        self.lp.setConfirmPassword(self.userPassword)
 
-        if(actualTitle == "nopCommerce demo store"):
+        self.lp.clickOnRegister()
+
+        if (actualTitle == "nopCommerce demo store. Register"):
+
             assert True
+            self.driver.close()
         else:
             assert False
+            self.driver.close()
 
-  
+
+
