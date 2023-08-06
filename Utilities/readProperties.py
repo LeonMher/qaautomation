@@ -14,6 +14,11 @@ class ReadProperties:
         url = config.get('common info', 'registerUrl')
         return url
     @staticmethod
+    def getApplicationCartUrl():
+        url = config.get('common info', 'cartUrl')
+        return url
+
+    @staticmethod
     def getUserEmail():
         email = config.get('common info', 'userEmail')
         return email

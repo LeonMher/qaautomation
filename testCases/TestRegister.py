@@ -1,6 +1,7 @@
 import pytest
 from selenium import webdriver
 from pageObjects.Register import Register
+from pageObjects.Login import Login
 from Utilities.readProperties import ReadProperties
 # from utilities.customLogger import LogGen
 from Utilities.customLogger import MyLogger
@@ -33,7 +34,7 @@ class Test_Register:
             assert False
             self.driver.close()
 
-    def test_login(self):
+    def test_register(self):
         self.driver = webdriver.Chrome()
         self.driver.get(self.baseUrl)
         actualTitle = self.driver.title
@@ -58,4 +59,21 @@ class Test_Register:
             self.driver.close()
 
 
+    def test_login(self):
+        self.driver = webdriver.Chrome()
+        self.driver.get(self.baseUrl)
+        self.lp = Login(self.driver)
+        self.lp.setUserName(self.userEmail)
+        self.lp.setUserPassword(self.userPassword)
+        self.lp.clickOnLogin()
+        self.lp.clickOnLogout()
+        actualTitle = self.driver.title
 
+        self.driver.close()
+
+
+
+        if(actualTitle == "nopCommerce demo store"):
+            assert True
+        else:
+            assert False

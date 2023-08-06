@@ -8,7 +8,7 @@ from Utilities.customLogger import MyLogger
 
 class Test_Login_Logout:
     baseUrl = ReadProperties.getApplicationUrl()
-    userEmail = "99.p3rc3n7@gmail.com"
+    userEmail = "mtsatinyan2@gmail.com"
     userPassword = "kepler22bb"
 
     logger = MyLogger()
