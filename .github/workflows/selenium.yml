@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest  # You can choose a different runner
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.5.2
 
     - name: Set Up Python
       uses: actions/setup-python@v3
