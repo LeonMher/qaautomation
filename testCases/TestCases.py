@@ -1,5 +1,7 @@
 import pytest
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
 from pageObjects.Login import Login
 from Utilities.readProperties import ReadProperties
 # from utilities.customLogger import LogGen
@@ -14,9 +16,14 @@ class Test_Login_Logout:
     logger = MyLogger()
     logger.info("*************** Login and Logout   *****************")
 
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')  # Run Chrome in headless mode
     def testTitle(self):
 
-        self.driver = webdriver.Chrome()
+
+        # self.driver = webdriver.Chrome()
+
+        self.driver = webdriver.Chrome(options=self.chrome_options)
         self.driver.get(self.baseUrl)
         actualTitle = self.driver.title
         # Why do we close the webdriver, what if we don't actually close it
@@ -32,7 +39,7 @@ class Test_Login_Logout:
 
 
     def test_login(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(options=self.chrome_options)
         self.driver.get(self.baseUrl)
         self.lp = Login(self.driver)
         self.lp.setUserName(self.userEmail)
