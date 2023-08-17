@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Fetch the status of the most recent workflow run
+status=$(curl -s -o /dev/null -w "%{http_code}" https://api.github.com/repos/LeonMher/qaautomation/actions/workflows/selenium/runs/latest)
+
+# Check if the status is not "200 OK" (which means success)
+if [ "$status" != "200" ]; then
+  echo "Error: GitHub Actions workflow failed. Push rejected."
+  exit 1
+fi
+
+exit 0
