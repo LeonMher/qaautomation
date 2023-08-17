@@ -23,5 +23,5 @@ jobs:
         pip install -r requirements.txt  # Install your dependencies
 
     - name: Run Selenium Tests
-      run: python hello.py
+      run: pytest -v -s testCases/TestCases.py
         
