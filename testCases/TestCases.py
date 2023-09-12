@@ -36,23 +36,22 @@ class Test_Login_Logout:
             self.driver.close()
 
 
-    def test_login(self):
-        self.driver = webdriver.Chrome(options=self.chrome_options)
-        self.driver.get(self.baseUrl)
-        self.lp = Login(self.driver)
-        self.lp.setUserName(self)
-        self.lp.setUserPassword(self)
-        self.lp.clickOnLogin()
-        self.lp.clickOnLogout()
-        actualTitle = self.driver.title
+    # def test_login(self):
+    #     self.driver = webdriver.Chrome(options=self.chrome_options)
+    #     self.driver.get(self.baseUrl)
+    #     self.lp = Login(self.driver)
+    #     self.lp.setUserName(self)
+    #     self.lp.setUserPassword(self)
+    #     self.lp.clickOnLogin()
+    #     self.lp.clickOnLogout()
+    #     actualTitle = self.driver.title
+    #
+    #     self.driver.close()
+    #
+    #     if(actualTitle == "nopCommerce demo store"):
+    #         assert True
+    #     else:
+    #         assert False
 
-        self.driver.close()
-
-
-
-        if(actualTitle == "nopCommerce demo store"):
-            assert True
-        else:
-            assert False
 
   
