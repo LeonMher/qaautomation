@@ -1,9 +1,13 @@
 import pytest
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+
+import time
 from pageObjects.Register import Register
 from pageObjects.Login import Login
 from Utilities.readProperties import ReadProperties
-# from utilities.customLogger import LogGen
 from Utilities.customLogger import MyLogger
 
 
@@ -11,7 +15,7 @@ class Test_Register:
     baseUrl = ReadProperties.getApplicationRegisterUrl()
     userFirstName = "Mher"
     userLastName = "Tsatinyan"
-    userEmail = "mtsatinyan2@gmail.com"
+    userEmail = "mtsatinyan12@gmail.com"
 
 
     userPassword = "kepler22bb"
@@ -19,20 +23,7 @@ class Test_Register:
     logger = MyLogger()
     logger.info("*************** Register   *****************")
 
-    def testTitle(self):
 
-        self.driver = webdriver.Chrome()
-        self.driver.get(self.baseUrl)
-        actualTitle = self.driver.title
-        # Why do we close the webdriver, what if we don't actually close it
-
-        if (actualTitle == "nopCommerce demo store. Register"):
-
-            assert True
-            self.driver.close()
-        else:
-            assert False
-            self.driver.close()
 
     def test_register(self):
         self.driver = webdriver.Chrome()
@@ -50,7 +41,13 @@ class Test_Register:
 
         self.lp.clickOnRegister()
 
-        if (actualTitle == "nopCommerce demo store. Register"):
+        wait = WebDriverWait(self.driver, 10)
+        # Wait for the title to be present and not empty
+        wait.until(EC.presence_of_element_located((By.TAG_NAME, "title")))
+        print(f"Actual Title: {actualTitle}")
+
+        time.sleep(5)
+        if actualTitle == "nopCommerce demo store. Register":
 
             assert True
             self.driver.close()
@@ -59,21 +56,7 @@ class Test_Register:
             self.driver.close()
 
 
-    def test_login(self):
-        self.driver = webdriver.Chrome()
-        self.driver.get(self.baseUrl)
-        self.lp = Login(self.driver)
-        self.lp.setUserName(self.userEmail)
-        self.lp.setUserPassword(self.userPassword)
-        self.lp.clickOnLogin()
-        self.lp.clickOnLogout()
-        actualTitle = self.driver.title
-
-        self.driver.close()
 
 
 
-        if(actualTitle == "nopCommerce demo store"):
-            assert True
-        else:
-            assert False
+

@@ -4,11 +4,10 @@ from openpyxl import load_workbook
 from selenium.webdriver.common.by import By
 
 
-# Initialize the WebDriver (change the path to your WebDriver executable)
 driver = webdriver.Chrome()
 
 # Load the Excel file
-excel_file = "C:\\Users\\inOne_02\\Desktop\\testTheTest\\qaautomation\\testCases\\login.xlsx"
+excel_file = "C:\\Users\\inOne_02\\Desktop\\testTheTest\\qaautomation\\login.xlsx"
 workbook = load_workbook(excel_file)
 sheet = workbook["Login"]
 

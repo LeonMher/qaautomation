@@ -6,6 +6,8 @@ env/
 # Exclude any generated files
 *.pyc
 __pycache__/
+.xlsx
+chromedriver.exe/
 
 # Exclude IDE-specific files (e.g., for Visual Studio Code)
 .vscode/
